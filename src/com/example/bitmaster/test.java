@@ -2,5 +2,5 @@ package com.example.bitmaster;
 
 public class test {
 
-	//changed
+	//I changed it as well.
 }
