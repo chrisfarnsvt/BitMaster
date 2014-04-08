@@ -2,6 +2,7 @@ package com.example.bitmaster;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.view.Gravity;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -25,6 +26,9 @@ public class Grid extends TableLayout {
 				tv.setText(bin + "");
 				tv.setTextSize(24);
 				tv.setBackgroundColor(Color.YELLOW);
+				tv.setWidth(50);
+				tv.setHeight(50);
+				tv.setGravity(Gravity.CENTER);
 				tr.addView(tv);
 			}
 			this.addView(tr);
