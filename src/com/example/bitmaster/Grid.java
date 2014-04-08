@@ -9,10 +9,9 @@ public class Grid extends TableLayout {
 	public Grid(Context context, int side) {
 		super(context);
 		_context = context;
-		_table = new TableLayout(_context);
 		_side = side;
 		_bins = new int[side][side];
-		fillTable(_context, side);
+		fillTable(_context, _side);
 	}
 	
 	private void fillTable(Context context, int side) {
@@ -20,17 +19,18 @@ public class Grid extends TableLayout {
 			TableRow tr = new TableRow(context);
 			for (int n = 0; n < side; n++){
 				TextView tv = new TextView(context);
-				int bin = (int) Math.random() * 2;
+				int bin = (int) (Math.random() * 2);
 				_bins[i][n] = bin;
 				tv.setText(bin + "");
+				tv.setTextSize(24);
 				tr.addView(tv);
 			}
-			_table.addView(tr);
+			this.addView(tr);
 		}
 	}
 
 	private int[][] _bins;
 	private Context _context;
 	private int _side;
-	private TableLayout _table;
+	//private TableLayout _table;
 }

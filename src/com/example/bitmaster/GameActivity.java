@@ -8,9 +8,9 @@ public class GameActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.start_layout);
+		setContentView(R.layout.game_layout);
 		FrameLayout fl = (FrameLayout) findViewById(R.id.frameLayout);
-		Grid g = new Grid(this, 2);
+		Grid g = new Grid(this, 8);
 		fl.addView(g);
 	}
 }
