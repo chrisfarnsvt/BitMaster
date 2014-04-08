@@ -1,6 +1,6 @@
 package com.example.bitmaster;
 
-public class test {
+public class Grid {
 
 	//I changed it as well.
 }
