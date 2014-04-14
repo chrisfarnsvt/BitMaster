@@ -15,6 +15,7 @@ public class GameActivity extends Activity{
 		Grid g = new Grid(this, _size);
 		FrameLayout.LayoutParams p = new FrameLayout.LayoutParams(50*_size,50*_size, Gravity.CENTER_HORIZONTAL);
 		fl.addView(g,p);
+		//work please
 	}
 	
 	private int _size;
