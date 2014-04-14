@@ -20,6 +20,10 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 		_bins = new int[side][side];
 		_curCell = new int[2];
 		_prevCell = new int[2];
+		_answers = new int[5];
+		for (int i = 0; i < 5; i++) {
+			_answers[i] = i + 6;
+		}
 		_selCoords = new int[side][side];
 		_views = new TextView[side][side];
 		fillTable(_context, _side);
@@ -45,38 +49,10 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 			this.addView(tr);
 		}
 	}
-	//bacon is a food group for real bros
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		switch(event.getAction()){		
-			case MotionEvent.ACTION_MOVE:
-				{
-					int x = (int) event.getX() / 50;
-					int y = (int) event.getY() / 50;
-					if (x > (_side - 1) || y > (_side - 1) || x < 0 || y < 0)
-						return true;
-					if (x != _curCell[0] || y != _curCell[1]) {
-						_prevCell[0] = _curCell[0];
-						_prevCell[1] = _curCell[1];
-						_curCell[0] = x;
-						_curCell[1] = y;
-						if (_selCoords[x][y] == 1) {
-							_views[_prevCell[1]][_prevCell[0]].setBackgroundColor(Color.YELLOW);
-							_views[y][x].setBackgroundColor(Color.YELLOW);
-							_selCoords[x][y] = 0;
-							_selCoords[_prevCell[1]][_prevCell[0]] = 0;
-							return true;
-						}
-						Log.i("information", "move called");
-						_selCoords[x][y] = 1;
-						_views[y][x].setBackgroundColor(Color.RED);
-						return true;
-					}
-					return false;
-				}
-	
-			case MotionEvent.ACTION_DOWN:
-			{
+			case MotionEvent.ACTION_MOVE: {
 				int x = (int) event.getX() / 50;
 				int y = (int) event.getY() / 50;
 				if (x > (_side - 1) || y > (_side - 1) || x < 0 || y < 0)
@@ -88,13 +64,40 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 						_curCell[1] = y;
 						if (_selCoords[x][y] == 1) {
 							_views[_prevCell[1]][_prevCell[0]].setBackgroundColor(Color.YELLOW);
-							_views[y][x].setBackgroundColor(Color.YELLOW);
-							_selCoords[x][y] = 0;
 							_selCoords[_prevCell[1]][_prevCell[0]] = 0;
+							_bin = _bin.substring(0, _bin.length() - 1);
 							return true;
+							
 						}
-						Log.i("information", "move called");
 						_selCoords[x][y] = 1;
+						_bin += _views[y][x].getText() + "";
+						_views[y][x].setBackgroundColor(Color.RED);
+						return true;
+					}
+					return false;
+				}	
+	
+			case MotionEvent.ACTION_DOWN:
+			{
+				_bin = "";
+				int x = (int) event.getX() / 50;
+				int y = (int) event.getY() / 50;
+				if (x > (_side - 1) || y > (_side - 1) || x < 0 || y < 0)
+					return true;
+				if (x != _curCell[0] || y != _curCell[1]) {
+						_prevCell[0] = _curCell[0];
+						_prevCell[1] = _curCell[1];
+						_curCell[0] = x;
+						_curCell[1] = y;
+						if (_selCoords[x][y] == 1) {
+							_views[_prevCell[1]][_prevCell[0]].setBackgroundColor(Color.YELLOW);
+							_selCoords[_prevCell[1]][_prevCell[0]] = 0;
+							_bin = _bin.substring(0, _bin.length() - 1);
+							return true;
+							
+						}
+						_selCoords[x][y] = 1;
+						_bin += _views[y][x].getText() + "";
 						_views[y][x].setBackgroundColor(Color.RED);
 						return true;
 					}
@@ -103,24 +106,44 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 	
 			case MotionEvent.ACTION_UP:
 				{
-					Log.i("info", "up called");
 					for (int i = 0; i < _side; i++) {
 						for (int n = 0; n < _side; n++) {
 							if (_selCoords[n][i] == 1) {
 									_views[i][n].setBackgroundColor(Color.YELLOW);
-									_bin += _views[i][n].getText();
 									_selCoords[n][i] = 0;
 							}
 						}
 					}
+					_context.update(checkAnswer(_bin);
+					_curCell[0] = -1;
+					_curCell[1] = -1;
+					_prevCell[0] = -1;
+					_prevCell [1] = -1;
+					Log.i("bin is", _bin);
 					return true;
 				}
-			}
-				return false;
+		}
+		return false;
 	}
 	
-	
+	private boolean checkAnswer(String bin) {
+		int check = Integer.parseInt(bin, 2);
+		for (int i = 0; i < 5; i++) {
+			if (_answers[i] == check) {
+				_answers[i] = -1;
+				return true;
+			}
+		}
+		return false;
+	}
 
+	public String getBin() {
+		return _bin;
+	}
+
+	
+	private boolean _isRight;
+	private int[] _answers;
 	private int[] _curCell;
 	private int[] _prevCell;
 	private int[][] _bins;
@@ -129,6 +152,4 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 	private int[][] _selCoords;
 	private Context _context;
 	private int _side;
-	//private TableLayout _table;
-
 }
