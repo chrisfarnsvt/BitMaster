@@ -43,7 +43,7 @@ public class GameActivity extends Activity{
 			grid.placeNum(7, Color.CYAN);*/
 			boolean done = false;
 			while (!done)
-			done = grid.placeNum((int) Math.pow(2, 30), Color.MAGENTA);
+			done = grid.placeNum((int) Math.pow(2, 15), Color.MAGENTA);
 		
 		current.setText(String.valueOf(dec));
 	}

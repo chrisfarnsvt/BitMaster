@@ -228,9 +228,13 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 	}
 	
 	private boolean checkAnswer(String bin) {
-		long check = Long.parseLong(bin, 2);
+		if (bin.length() > 15){
+			Toast.makeText(_context, "Input Value too large - must be < 15", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		int check = Integer.parseInt(bin, 2);
 		for (int i = 0; i < 5; i++) {
-			if ((long) _answers[i] == check) {
+			if (_answers[i] == check) {
 				_answers[i] = -1;
 				return true;
 			}
