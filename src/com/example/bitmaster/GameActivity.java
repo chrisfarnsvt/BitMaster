@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,36 @@ public class GameActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.game_layout);
+		
+		reset (null);
+	}
+	
+	public void setAnswers(int[] a) {
+		_answers = a;
+	}
+	
+	public void update(Boolean result) {
+		String bin = grid.getBin();
+		long dec = 0;
+		for(int i = 0; i<bin.length(); i++) {
+			if(Long.valueOf(bin.substring(i, i+1)) == 0)
+				dec = dec * 2;
+			else
+				dec = (dec * 2) +1;
+		}
+		current.setText(String.valueOf(dec));
+		if (result){
+			_count ++;
+			Toast.makeText(this, "You won!", Toast.LENGTH_LONG).show();
+			if(_count == _answers.length);
+			else
+			goal.setText(String.valueOf("Look for: " +_answers[_count]));
+		}
+			
+	}
+	
+	public void reset (View Button) {
+		
 		FrameLayout fl = (FrameLayout) findViewById(R.id.frameLayout);
 		
 		_size = 8;
@@ -48,30 +79,6 @@ public class GameActivity extends Activity{
 			}
 		
 		current.setText(String.valueOf(dec));
-	}
-	
-	public void setAnswers(int[] a) {
-		_answers = a;
-	}
-	
-	public void update(Boolean result) {
-		String bin = grid.getBin();
-		long dec = 0;
-		for(int i = 0; i<bin.length(); i++) {
-			if(Long.valueOf(bin.substring(i, i+1)) == 0)
-				dec = dec * 2;
-			else
-				dec = (dec * 2) +1;
-		}
-		current.setText(String.valueOf(dec));
-		if (result){
-			_count ++;
-			Toast.makeText(this, "You won!", Toast.LENGTH_LONG).show();
-			if(_count == _answers.length);
-			else
-			goal.setText(String.valueOf("Look for: " +_answers[_count]));
-		}
-			
 	}
 		
 	
