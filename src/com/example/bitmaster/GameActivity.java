@@ -35,10 +35,15 @@ public class GameActivity extends Activity{
 			else
 				dec = (dec * 2) +1;
 		}
-			grid.placeNum(10, Color.BLUE);
+			/*grid.placeNum(10, Color.BLUE);
 			grid.placeNum(13, Color.RED);
 			grid.placeNum(8, Color.GREEN);
 			grid.placeNum(4, Color.MAGENTA);
+			grid.placeNum(15, Color.WHITE);
+			grid.placeNum(7, Color.CYAN);*/
+			boolean done = false;
+			while (!done)
+			done = grid.placeNum((int) Math.pow(2, 30), Color.MAGENTA);
 		
 		current.setText(String.valueOf(dec));
 	}
@@ -49,9 +54,9 @@ public class GameActivity extends Activity{
 	
 	public void update(Boolean result) {
 		String bin = grid.getBin();
-		int dec = 0;
+		long dec = 0;
 		for(int i = 0; i<bin.length(); i++) {
-			if(Integer.valueOf(bin.substring(i, i+1)) == 0)
+			if(Long.valueOf(bin.substring(i, i+1)) == 0)
 				dec = dec * 2;
 			else
 				dec = (dec * 2) +1;

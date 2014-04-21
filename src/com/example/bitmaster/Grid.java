@@ -42,8 +42,11 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 		String bin = Integer.toBinaryString(n);
 		int x = (int)(Math.random() * _side);
 		int y = (int)(Math.random() * _side);
+		int counter = 0;
 		
 		for (int i = 0; i < bin.length(); i++) {
+			if (counter == 100)
+				return false;
 			String s = bin.substring(i,i+1);
 			//this random is determining whether to move horizontally or vertically
 			int r = (int) (Math.random() * 2);
@@ -52,13 +55,17 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 				//determine which direction to move in
 				r = (int) (Math.random() * 2);
 				//move right
-				if (r==0 && x<_side-1) {
+				if (r==0 && x<(_side-1)) {
 					if( _used[x+1][y] != true) {
 						_bins[x+1][y] = Integer.valueOf(s);
 						_views[x+1][y].setText(s);
 						_views[x+1][y].setBackgroundColor(color);
 						_used[x+1][y] = true;
 						x+=1;
+					}
+					else { 
+						i--;
+						counter ++;
 					}
 				}
 				//move left
@@ -70,22 +77,33 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 						_used[x-1][y] = true;
 						x-=1;
 					}
+					else { 
+						i--;
+						counter ++;
+					}
 				}
-				else i--;
+				else { 
+					i--;
+					counter ++;
+				}
 				
 			}
 			//move vertically
-			else {
+			else{
 				//determine which direction to move in
 				r = (int) (Math.random() * 2);
 				//move up
-				if (r==0 && y<_side) {
+				if (r==0 && y<(_side-1)) {
 					if (_used[x][y+1] != true) {
 						_bins[x][y+1] = Integer.valueOf(s);
 						_views[x][y+1].setText(s);
 						_views[x][y+1].setBackgroundColor(color);
 						_used[x][y+1] = true;
 						y+=1;
+					}
+					else { 
+						i--;
+						counter ++;
 					}
 				}
 				
@@ -98,12 +116,19 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 						_used[x][y-1] = true;
 						y-=1;
 					}
+					else { 
+						i--;
+						counter ++;
+					}
 				}
-				else i--;
+				else { 
+					i--;
+					counter ++;
+				}
 			}
-		
+			//if (x == 0 && y != 0 && y != (_side - 1) && _used[x+1][y] && _used[x][y+1] && _used[x][y-1])	
 		}
-		return false;
+		return true;
 	}
 	private void fillTable(Context context, int side) {
 		for (int i = 0; i < side; i++) {
@@ -203,9 +228,9 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 	}
 	
 	private boolean checkAnswer(String bin) {
-		int check = Integer.parseInt(bin, 2);
+		long check = Long.parseLong(bin, 2);
 		for (int i = 0; i < 5; i++) {
-			if (_answers[i] == check) {
+			if ((long) _answers[i] == check) {
 				_answers[i] = -1;
 				return true;
 			}
