@@ -172,6 +172,7 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 						if (_selCoords[x][y] == 1) {
 							_views[_prevCell[1]][_prevCell[0]].setBackgroundColor(Color.YELLOW);
 							_selCoords[_prevCell[1]][_prevCell[0]] = 0;
+							if (_bin.length() > 0)
 							_bin = _bin.substring(0, _bin.length() - 1);
 							return true;
 							
@@ -199,7 +200,8 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 						if (_selCoords[x][y] == 1) {
 							_views[_prevCell[1]][_prevCell[0]].setBackgroundColor(Color.YELLOW);
 							_selCoords[_prevCell[1]][_prevCell[0]] = 0;
-							_bin = _bin.substring(0, _bin.length() - 1);
+							if (_bin.length() > 0)
+								_bin = _bin.substring(0, _bin.length() - 1);
 							return true;
 							
 						}
@@ -238,6 +240,8 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 			Toast.makeText(_context, "Input Value too large - must be < 15", Toast.LENGTH_SHORT).show();
 			return false;
 		}
+		if (bin.length() <= 0)
+			return false;
 		int check = Integer.parseInt(bin, 2);
 		for (int i = 0; i < 5; i++) {
 			if (_answers[i] == check) {
