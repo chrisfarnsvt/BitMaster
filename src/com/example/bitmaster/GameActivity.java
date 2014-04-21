@@ -24,7 +24,8 @@ public class GameActivity extends Activity{
 		fl.addView(grid,p);
 		
 		goal = (TextView) findViewById(R.id.goal);
-		goal.setText(String.valueOf(_answers[0]));
+		goal.setText(String.valueOf("Look for: " + _answers[0]));
+		goal.setTextSize(20);
 		
 		current = (TextView)findViewById(R.id.current);
 		String bin = grid.getBin(); 
@@ -67,9 +68,8 @@ public class GameActivity extends Activity{
 			_count ++;
 			Toast.makeText(this, "You won!", Toast.LENGTH_LONG).show();
 			if(_count == _answers.length);
-				//make new grid
 			else
-			goal.setText(String.valueOf(_answers[_count]));
+			goal.setText(String.valueOf("Look for: " +_answers[_count]));
 		}
 			
 	}
@@ -82,4 +82,5 @@ public class GameActivity extends Activity{
 	private int _size;
 	private Random _random;
 	private int _count;
+	
 }

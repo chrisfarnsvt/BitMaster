@@ -23,7 +23,13 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 		_answers = new int[5];
 		_used = new boolean[side][side];
 		for (int i = 0; i < 5; i++) {
-			_answers[i] = (int)(Math.random()*25);
+			int add = (int) (Math.random() * 50);
+			for (int n = 0; n < i; n++) {
+				while (_answers[n] == add) {
+					add = (int) (Math.random() * 50);
+				}
+			}
+			_answers[i] = add;
 		}
 		((GameActivity) _context).setAnswers(_answers);
 		_selCoords = new int[side][side];
@@ -244,6 +250,10 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 
 	public String getBin() {
 		return _bin;
+	}
+	
+	public int[] getAnswers() {
+		return _answers;
 	}
 
 	
