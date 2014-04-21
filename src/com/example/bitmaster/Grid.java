@@ -21,15 +21,90 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 		_curCell = new int[2];
 		_prevCell = new int[2];
 		_answers = new int[5];
+		_used = new boolean[side][side];
 		for (int i = 0; i < 5; i++) {
-			_answers[i] = i + 6;
+			_answers[i] = (int)(Math.random()*25);
 		}
+		((GameActivity) _context).setAnswers(_answers);
 		_selCoords = new int[side][side];
 		_views = new TextView[side][side];
 		fillTable(_context, _side);
 		setOnTouchListener(this);
 	}
 	
+	/**
+	 * this method places a number randomly on the grid using valid moves to place each digit
+	 * a starting point is randomly generated using the local variables x and y
+	 * @param n the number to put in the grid
+	 * @return
+	 */
+	public boolean placeNum(int n, int color) {
+		String bin = Integer.toBinaryString(n);
+		int x = (int)(Math.random() * _side);
+		int y = (int)(Math.random() * _side);
+		
+		for (int i = 0; i < bin.length(); i++) {
+			String s = bin.substring(i,i+1);
+			//this random is determining whether to move horizontally or vertically
+			int r = (int) (Math.random() * 2);
+			//move horizontal
+			if (r == 0) {
+				//determine which direction to move in
+				r = (int) (Math.random() * 2);
+				//move right
+				if (r==0 && x<_side-1) {
+					if( _used[x+1][y] != true) {
+						_bins[x+1][y] = Integer.valueOf(s);
+						_views[x+1][y].setText(s);
+						_views[x+1][y].setBackgroundColor(color);
+						_used[x+1][y] = true;
+						x+=1;
+					}
+				}
+				//move left
+				else if (r==1 && x>0) {
+					if (_used[x-1][y] != true) {
+						_bins[x-1][y] = Integer.valueOf(s);
+						_views[x-1][y].setText(s);
+						_views[x-1][y].setBackgroundColor(color);
+						_used[x-1][y] = true;
+						x-=1;
+					}
+				}
+				else i--;
+				
+			}
+			//move vertically
+			else {
+				//determine which direction to move in
+				r = (int) (Math.random() * 2);
+				//move up
+				if (r==0 && y<_side) {
+					if (_used[x][y+1] != true) {
+						_bins[x][y+1] = Integer.valueOf(s);
+						_views[x][y+1].setText(s);
+						_views[x][y+1].setBackgroundColor(color);
+						_used[x][y+1] = true;
+						y+=1;
+					}
+				}
+				
+				//move down
+				else if (r ==1 && y>0) {
+					if (_used[x][y-1] != true) {
+						_bins[x][y-1] = Integer.valueOf(s);
+						_views[x][y-1].setText(s);
+						_views[x][y-1].setBackgroundColor(color);
+						_used[x][y-1] = true;
+						y-=1;
+					}
+				}
+				else i--;
+			}
+		
+		}
+		return false;
+	}
 	private void fillTable(Context context, int side) {
 		for (int i = 0; i < side; i++) {
 			TableRow tr = new TableRow(context);
@@ -46,6 +121,7 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 				_views[i][n].setGravity(Gravity.CENTER);
 				tr.addView(_views[i][n]);
 			}
+			
 			this.addView(tr);
 		}
 	}
@@ -114,7 +190,7 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 							}
 						}
 					}
-					_context.update(checkAnswer(_bin);
+					((GameActivity) _context).update(checkAnswer(_bin));
 					_curCell[0] = -1;
 					_curCell[1] = -1;
 					_prevCell[0] = -1;
@@ -147,6 +223,7 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 	private int[] _curCell;
 	private int[] _prevCell;
 	private int[][] _bins;
+	private boolean[][] _used;
 	private String _bin;
 	private TextView[][] _views;
 	private int[][] _selCoords;

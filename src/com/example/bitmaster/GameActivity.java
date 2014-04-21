@@ -3,10 +3,12 @@ package com.example.bitmaster;
 import java.util.Random;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GameActivity extends Activity{
 	@Override
@@ -22,7 +24,7 @@ public class GameActivity extends Activity{
 		fl.addView(grid,p);
 		
 		goal = (TextView) findViewById(R.id.goal);
-		goal.setText(String.valueOf(0));
+		goal.setText(String.valueOf(_answers[0]));
 		
 		current = (TextView)findViewById(R.id.current);
 		String bin = grid.getBin(); 
@@ -33,6 +35,10 @@ public class GameActivity extends Activity{
 			else
 				dec = (dec * 2) +1;
 		}
+			grid.placeNum(10, Color.BLUE);
+			grid.placeNum(13, Color.RED);
+			grid.placeNum(8, Color.GREEN);
+			grid.placeNum(4, Color.MAGENTA);
 		
 		current.setText(String.valueOf(dec));
 	}
@@ -42,13 +48,26 @@ public class GameActivity extends Activity{
 	}
 	
 	public void update(Boolean result) {
-		current.setText(String.valueOf(grid.getBin()));
+		String bin = grid.getBin();
+		int dec = 0;
+		for(int i = 0; i<bin.length(); i++) {
+			if(Integer.valueOf(bin.substring(i, i+1)) == 0)
+				dec = dec * 2;
+			else
+				dec = (dec * 2) +1;
+		}
+		current.setText(String.valueOf(dec));
 		if (result){
 			_count ++;
+			Toast.makeText(this, "You won!", Toast.LENGTH_LONG).show();
+			if(_count == _answers.length);
+				//make new grid
+			else
 			goal.setText(String.valueOf(_answers[_count]));
 		}
 			
 	}
+		
 	
 	TextView goal;
 	TextView current;
