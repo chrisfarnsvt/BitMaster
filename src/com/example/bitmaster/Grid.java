@@ -23,10 +23,10 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 		_answers = new int[5];
 		_used = new boolean[side][side];
 		for (int i = 0; i < 5; i++) {
-			int add = (int) (Math.random() * 50);
+			int add = (int) ((Math.random() * 50) + 10);
 			for (int n = 0; n < i; n++) {
 				while (_answers[n] == add) {
-					add = (int) (Math.random() * 50);
+					add = (int) ((Math.random() * 50) + 10);
 				}
 			}
 			_answers[i] = add;

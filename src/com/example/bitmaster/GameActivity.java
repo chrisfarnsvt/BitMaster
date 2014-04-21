@@ -36,10 +36,14 @@ public class GameActivity extends Activity{
 		current.setText(String.valueOf(dec));
 		if (result){
 			_count ++;
-			Toast.makeText(this, "You won!", Toast.LENGTH_LONG).show();
-			if(_count == _answers.length);
-			else
-			goal.setText(String.valueOf("Look for: " +_answers[_count]));
+			if(_count == _answers.length) {
+				Toast.makeText(this, "You won!", Toast.LENGTH_LONG).show();
+				reset(null);
+			}
+			else {
+				Toast.makeText(this, "You (partially) won!", Toast.LENGTH_LONG).show();
+				goal.setText(String.valueOf("Look for: " +_answers[_count]));
+			}
 		}
 			
 	}
@@ -67,18 +71,13 @@ public class GameActivity extends Activity{
 			else
 				dec = (dec * 2) +1;
 		}
-			/*grid.placeNum(10, Color.BLUE);
-			grid.placeNum(13, Color.RED);
-			grid.placeNum(8, Color.GREEN);
-			grid.placeNum(4, Color.MAGENTA);
-			grid.placeNum(15, Color.WHITE);
-			grid.placeNum(7, Color.CYAN);*/
 			boolean done = false;
 			for(int i : _answers) {
 				grid.placeNum(i, Color.YELLOW);
 			}
 		
 		current.setText(String.valueOf(dec));
+		_count = 0;
 	}
 		
 	
