@@ -42,8 +42,9 @@ public class GameActivity extends Activity{
 			grid.placeNum(15, Color.WHITE);
 			grid.placeNum(7, Color.CYAN);*/
 			boolean done = false;
-			while (!done)
-			done = grid.placeNum((int) Math.pow(2, 15), Color.MAGENTA);
+			for(int i : _answers) {
+				grid.placeNum(i, Color.YELLOW);
+			}
 		
 		current.setText(String.valueOf(dec));
 	}
