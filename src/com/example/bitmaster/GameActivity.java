@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +41,7 @@ public class GameActivity extends Activity{
 			
 			if(_count == _answers.length) {
 				Toast.makeText(this, "You are a true Bitspiditioner! Final Score: " + grid.getPoints(), Toast.LENGTH_SHORT).show();
-				reset(null);
+				win();
 			}
 			else {
 				Toast.makeText(this, "Well done, Bitsplorer!", Toast.LENGTH_SHORT).show();
@@ -58,7 +59,7 @@ public class GameActivity extends Activity{
 	public void reset (View Button) {
 		
 		FrameLayout fl = (FrameLayout) findViewById(R.id.frameLayout);
-		
+		fl.removeAllViews();
 		_size = 8;
 		grid = new Grid(this, _size);
 		
@@ -95,6 +96,17 @@ public class GameActivity extends Activity{
 		current.setText(String.valueOf("Selected: " + dec));
 		_count = 0;
 	}
+	
+	public void win() {
+		FrameLayout fl = (FrameLayout)findViewById(R.id.frameLayout);
+		fl.removeAllViews();
+		
+		WinPanel wp = new WinPanel(this);
+		LayoutParams lp = new FrameLayout.LayoutParams(400, 400);
+		fl.addView(wp);
+
+	}
+		
 		
 	TextView mult;
 	TextView score;
