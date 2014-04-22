@@ -14,6 +14,8 @@ import android.widget.Toast;
 public class Grid extends TableLayout implements View.OnTouchListener {
 	public Grid(Context context, int side) {
 		super(context);
+		_points = 0;
+		_mult = 1;
 		_context = context;
 		_side = side;
 		_bin = "";
@@ -246,12 +248,27 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 		for (int i = 0; i < 5; i++) {
 			if (_answers[i] == check) {
 				_answers[i] = -1;
+				scorePoints(BASEPOINTS, _mult);
+				_mult++;
 				return true;
 			}
 		}
+		_mult = 1;
 		return false;
 	}
 
+	public void scorePoints(int points, int multiplier) {
+		_points += (points * multiplier);
+	}
+	
+	public int getMult() {
+		return _mult;
+	}
+	
+	public int getPoints() {
+		return _points;
+	}
+	
 	public String getBin() {
 		return _bin;
 	}
@@ -260,8 +277,6 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 		return _answers;
 	}
 
-	
-	private boolean _isRight;
 	private int[] _answers;
 	private int[] _curCell;
 	private int[] _prevCell;
@@ -272,4 +287,7 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 	private int[][] _selCoords;
 	private Context _context;
 	private int _side;
+	private int _points;
+	private int _mult;
+	private final int BASEPOINTS = 100;
 }

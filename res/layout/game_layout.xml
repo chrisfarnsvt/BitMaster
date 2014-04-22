@@ -10,8 +10,20 @@
     tools:context=".MainActivity" >
 
 <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight=".1">
-<TextView android:id="@+id/goal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1"/>
-<TextView android:id="@+id/current" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:text="2"/>
+
+<TextView
+    android:id="@+id/goal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="1" />
+
+<TextView
+    android:id="@+id/score"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="0"
+    android:layout_alignParentRight="true" />
+
 </RelativeLayout>
 
 <FrameLayout
@@ -28,6 +40,30 @@
     </TableLayout>
 
 </FrameLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight=".1" >
+
+    <TextView
+        android:id="@+id/current"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Selected: 0" />
+
+    <TextView
+        android:id="@+id/mult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:text="Multiplier : x1" />
+
+</LinearLayout>
+
 <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_weight=".1" android:orientation="horizontal">
 
 <Button
@@ -38,6 +74,13 @@
     android:onClick="reset"
     android:text="Reset" />
 
-<Button android:id="@+id/button2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="Button"/>
+<Button
+    android:id="@+id/button2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:onClick="story"
+    android:text="Story" />
+
 </LinearLayout>
 </LinearLayout>

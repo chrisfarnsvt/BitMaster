@@ -33,19 +33,26 @@ public class GameActivity extends Activity{
 			else
 				dec = (dec * 2) +1;
 		}
-		current.setText(String.valueOf(dec));
+		current.setText(String.valueOf("Selected: " + dec));
+		mult.setText(String.valueOf("Multiplier: x" + grid.getMult()));
 		if (result){
 			_count ++;
+			
 			if(_count == _answers.length) {
-				Toast.makeText(this, "You won!", Toast.LENGTH_LONG).show();
+				Toast.makeText(this, "You are a true Bitspiditioner! Final Score: " + grid.getPoints(), Toast.LENGTH_SHORT).show();
 				reset(null);
 			}
 			else {
-				Toast.makeText(this, "You (partially) won!", Toast.LENGTH_LONG).show();
-				goal.setText(String.valueOf("Look for: " +_answers[_count]));
+				Toast.makeText(this, "Well done, Bitsplorer!", Toast.LENGTH_SHORT).show();
+				score.setText(String.valueOf("Points: " + grid.getPoints()));
+				goal.setText(String.valueOf("Find: " +_answers[_count]));
 			}
 		}
 			
+	}
+	
+	public void story(View Button){
+		setContentView(R.layout.story);
 	}
 	
 	public void reset (View Button) {
@@ -58,11 +65,20 @@ public class GameActivity extends Activity{
 		FrameLayout.LayoutParams p = new FrameLayout.LayoutParams(50*_size,50*_size, Gravity.CENTER_HORIZONTAL);
 		fl.addView(grid,p);
 		
+		score = (TextView) findViewById(R.id.score);
+		score.setText(String.valueOf("Points: 0"));
+		score.setTextSize(20);
+		
+		mult = (TextView) findViewById(R.id.mult);
+		mult.setText("Multiplier: x1");
+		mult.setTextSize(20);
+		
 		goal = (TextView) findViewById(R.id.goal);
-		goal.setText(String.valueOf("Look for: " + _answers[0]));
+		goal.setText(String.valueOf("Find: " + _answers[0]));
 		goal.setTextSize(20);
 		
 		current = (TextView)findViewById(R.id.current);
+		current.setTextSize(20);
 		String bin = grid.getBin(); 
 		int dec = 0;
 		for(int i = 0; i<bin.length(); i++) {
@@ -76,11 +92,12 @@ public class GameActivity extends Activity{
 				grid.placeNum(i, Color.YELLOW);
 			}
 		
-		current.setText(String.valueOf(dec));
+		current.setText(String.valueOf("Selected: " + dec));
 		_count = 0;
 	}
 		
-	
+	TextView mult;
+	TextView score;
 	TextView goal;
 	TextView current;
 	Grid grid;
