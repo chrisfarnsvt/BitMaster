@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Paint.Align;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -18,6 +19,7 @@ public class WinPanel extends SurfaceView implements SurfaceHolder.Callback {
 	      getHolder().addCallback(this); //This lets our panel receive information about changes to itself
 	      _paint = new Paint();
 	      _paint.setColor(Color.RED);
+	      _paint.setTextAlign(Align.CENTER);
 	      _paint.setTextSize(60);
 	      _thread = new OurThread(this);
 	      
