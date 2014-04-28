@@ -1,11 +1,13 @@
 package com.example.bitmaster;
 
 import java.util.Random;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
@@ -19,6 +21,27 @@ public class GameActivity extends Activity{
 		setContentView(R.layout.game_layout);
 		
 		reset (null);
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch(item.getItemId())
+		{
+		case (R.id.action_settings):
+			
+			Intent settingsActivity = new Intent(getBaseContext(),
+			PrefActivity.class);
+			startActivity(settingsActivity);
+			return true;
+		}
+		return false;
 	}
 	
 	public void setAnswers(int[] a) {

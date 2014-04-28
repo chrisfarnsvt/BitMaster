@@ -1,7 +1,10 @@
 package com.example.bitmaster;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -11,9 +14,15 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Grid extends TableLayout implements View.OnTouchListener {
+public class Grid extends TableLayout implements View.OnTouchListener, OnSharedPreferenceChangeListener {
+	
 	public Grid(Context context, int side) {
 		super(context);
+		_preferences = PreferenceManager.getDefaultSharedPreferences(context);
+		_preferences.registerOnSharedPreferenceChangeListener(this);
+		
+		_difficulty = Integer.parseInt(_preferences.getString("diff", "1"));
+		
 		_points = 0;
 		_mult = 1;
 		_context = context;
@@ -25,13 +34,19 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 		_answers = new int[5];
 		_used = new boolean[side][side];
 		for (int i = 0; i < 5; i++) {
-			int add = (int) ((Math.random() * 50) + 10);
-			for (int n = 0; n < i; n++) {
-				while (_answers[n] == add) {
-					add = (int) ((Math.random() * 50) + 10);
+			String bin = "1";
+			for (int n = 0; n < _difficulty-1; n++) {
+				bin+=(int)(Math.random()*2);
+			}
+			boolean rep = false;
+			for(int x: _answers) {
+				if (Integer.parseInt(bin, 2) == x){
+					i--;
+					rep = true;
 				}
 			}
-			_answers[i] = add;
+			if(!rep)
+			_answers[i] = Integer.parseInt(bin, 2);
 		}
 		((GameActivity) _context).setAnswers(_answers);
 		_selCoords = new int[side][side];
@@ -276,6 +291,12 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 	public int[] getAnswers() {
 		return _answers;
 	}
+	
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	private int[] _answers;
 	private int[] _curCell;
@@ -289,5 +310,8 @@ public class Grid extends TableLayout implements View.OnTouchListener {
 	private int _side;
 	private int _points;
 	private int _mult;
+	private SharedPreferences _preferences;
+	private int _difficulty;
 	private final int BASEPOINTS = 100;
+	
 }
