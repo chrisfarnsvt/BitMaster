@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends Activity {
@@ -21,6 +22,21 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
+
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch(item.getItemId())
+		{
+		case (R.id.action_settings):
+			
+			Intent settingsActivity = new Intent(getBaseContext(),
+			PrefActivity.class);
+			startActivity(settingsActivity);
+			return true;
+		}
+		return false;
+	}
+	
 	public void startGame(View Button) {
 		Intent gameActivity = new Intent(getBaseContext(), GameActivity.class);
 		startActivity(gameActivity);
@@ -28,8 +44,8 @@ public class MainActivity extends Activity {
 	}
 	
 	public void startOptions(View Button) {
-	//	Intent settingsActivity = new Intent(getBaseContext(), PrefActivity.class);
-		//startActivity(settingsActivity);
+		Intent settingsActivity = new Intent(getBaseContext(), PrefActivity.class);
+		startActivity(settingsActivity);
 	}
 
 }
