@@ -1,5 +1,9 @@
 package com.example.bitmaster;
 
+/**
+ * some code from: http://obviam.net/index.php/particle-explosion-with-android/
+ */
+
 import android.graphics.Canvas;
 import android.util.Log;
 
