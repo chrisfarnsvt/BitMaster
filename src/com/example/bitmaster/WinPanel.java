@@ -18,7 +18,7 @@ public class WinPanel extends SurfaceView implements SurfaceHolder.Callback {
 	      getHolder().addCallback(this); //This lets our panel receive information about changes to itself
 	      _paint = new Paint();
 	      _paint.setColor(Color.RED);
-	      _paint.setTextSize(40);
+	      _paint.setTextSize(60);
 	      _thread = new OurThread(this);
 	      
 	      
@@ -61,7 +61,7 @@ public class WinPanel extends SurfaceView implements SurfaceHolder.Callback {
 	// Draw all sprites in list
 	public void doDraw(Canvas canvas, long elapsed) {
 	   canvas.drawColor(Color.WHITE); //gives us a red background
-	   canvas.drawText("YOU WIN!", _maxWidth/2 - 20, _maxHeight/2 - 20, _paint);
+	   canvas.drawText("YOU WIN!", _maxWidth/2, _maxHeight/2, _paint);
 	   synchronized (_explodeList) { //this is done to prevent errors with memory and thread consistency (stops it from breaking horribly)
 	      for (Explosion e : _explodeList) { //synchronized lets our two threads see exactly the same data
 	         e.draw(canvas);

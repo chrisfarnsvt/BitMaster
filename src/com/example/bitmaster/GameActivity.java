@@ -102,8 +102,8 @@ public class GameActivity extends Activity{
 		fl.removeAllViews();
 		
 		WinPanel wp = new WinPanel(this);
-		LayoutParams lp = new FrameLayout.LayoutParams(400, 400);
-		fl.addView(wp);
+		LayoutParams lp = new FrameLayout.LayoutParams(800, 400);
+		fl.addView(wp, lp);
 
 	}
 		
