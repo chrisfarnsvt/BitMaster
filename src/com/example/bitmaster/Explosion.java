@@ -30,12 +30,17 @@ public class Explosion {
 	
 	public void draw(Canvas c) {
 		for(Particle p : particles)
-			p.draw(c);
+			if (p != null)
+				p.draw(c);
 	}
 	
 	public void update() {
-		for (Particle p : particles)
-			p.update();
+		for (int i = 0; i < size; i++) {
+			if (particles[i] != null)
+				particles[i].update();
+			if (particles[i] != null && particles[i].getState() == 1)
+				particles[i] = null;
+		}
 	}
 
 }

@@ -33,9 +33,11 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 		_prevCell = new int[2];
 		_answers = new int[5];
 		_used = new boolean[side][side];
+		int rand;
 		for (int i = 0; i < 5; i++) {
 			String bin = "1";
-			for (int n = 0; n < _difficulty-1; n++) {
+			rand = (int) (Math.random() * 2);
+			for (int n = 0; n < (_difficulty - rand - 1); n++) {
 				bin+=(int)(Math.random()*2);
 			}
 			boolean rep = false;
@@ -263,7 +265,7 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 		for (int i = 0; i < 5; i++) {
 			if (_answers[i] == check) {
 				_answers[i] = -1;
-				scorePoints(BASEPOINTS, _mult);
+				scorePoints((BASEPOINTS * _bin.length()), _mult);
 				_mult++;
 				return true;
 			}
@@ -312,6 +314,6 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 	private int _mult;
 	private SharedPreferences _preferences;
 	private int _difficulty;
-	private final int BASEPOINTS = 100;
+	private final int BASEPOINTS = 1;
 	
 }

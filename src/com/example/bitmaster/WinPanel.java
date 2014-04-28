@@ -74,6 +74,8 @@ public class WinPanel extends SurfaceView implements SurfaceHolder.Callback {
 	
 	public void addExplosion(){
 	   synchronized (_explodeList) {
+		   //if (_explodeList.size() > 1000)
+			  // return;
 		   Random r = new Random();
 	      _explodeList.add(new Explosion(5, r.nextInt(1000), r.nextInt(1000)));
 	      _numSprites = _explodeList.size();

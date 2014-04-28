@@ -63,7 +63,8 @@ public class GameActivity extends Activity{
 			_count ++;
 			
 			if(_count == _answers.length) {
-				Toast.makeText(this, "You are a true Bitspiditioner! Final Score: " + grid.getPoints(), Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "You are a true Bitspiditioner!", Toast.LENGTH_SHORT).show();
+				score.setText(String.valueOf("Points: " + grid.getPoints()));
 				win();
 			}
 			else {
@@ -125,7 +126,7 @@ public class GameActivity extends Activity{
 		fl.removeAllViews();
 		
 		WinPanel wp = new WinPanel(this);
-		LayoutParams lp = new FrameLayout.LayoutParams(800, 400);
+		LayoutParams lp = new FrameLayout.LayoutParams(fl.getWidth(), fl.getHeight());
 		fl.addView(wp, lp);
 
 	}
