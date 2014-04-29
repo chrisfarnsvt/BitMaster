@@ -112,9 +112,8 @@ public class GameActivity extends Activity{
 			else
 				dec = (dec * 2) +1;
 		}
-			boolean done = false;
 			for(int i : _answers) {
-				grid.placeNum(i, Color.YELLOW);
+				grid.placeNum(i);
 			}
 		
 		current.setText(String.valueOf("Selected: " + dec));

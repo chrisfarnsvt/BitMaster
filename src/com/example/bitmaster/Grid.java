@@ -63,7 +63,7 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 	 * @param n the number to put in the grid
 	 * @return
 	 */
-	public boolean placeNum(int n, int color) {
+	public boolean placeNum(int n) {
 		String bin = Integer.toBinaryString(n);
 		int x = (int)(Math.random() * _side);
 		int y = (int)(Math.random() * _side);
@@ -84,7 +84,6 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 					if( _used[x+1][y] != true) {
 						_bins[x+1][y] = Integer.valueOf(s);
 						_views[x+1][y].setText(s);
-						_views[x+1][y].setBackgroundColor(color);
 						_used[x+1][y] = true;
 						x+=1;
 					}
@@ -98,7 +97,6 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 					if (_used[x-1][y] != true) {
 						_bins[x-1][y] = Integer.valueOf(s);
 						_views[x-1][y].setText(s);
-						_views[x-1][y].setBackgroundColor(color);
 						_used[x-1][y] = true;
 						x-=1;
 					}
@@ -122,7 +120,6 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 					if (_used[x][y+1] != true) {
 						_bins[x][y+1] = Integer.valueOf(s);
 						_views[x][y+1].setText(s);
-						_views[x][y+1].setBackgroundColor(color);
 						_used[x][y+1] = true;
 						y+=1;
 					}
@@ -137,7 +134,6 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 					if (_used[x][y-1] != true) {
 						_bins[x][y-1] = Integer.valueOf(s);
 						_views[x][y-1].setText(s);
-						_views[x][y-1].setBackgroundColor(color);
 						_used[x][y-1] = true;
 						y-=1;
 					}
@@ -165,7 +161,7 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 				_views[i][n] = new TextView(_context);
 				_views[i][n].setText(bin + "");
 				_views[i][n].setTextSize(24);
-				_views[i][n].setBackgroundColor(Color.YELLOW);
+				_views[i][n].setBackgroundColor(Color.WHITE);
 				_views[i][n].setWidth(50);
 				_views[i][n].setHeight(50);
 				_views[i][n].setGravity(Gravity.CENTER);
@@ -189,7 +185,7 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 						_curCell[0] = x;
 						_curCell[1] = y;
 						if (_selCoords[x][y] == 1) {
-							_views[_prevCell[1]][_prevCell[0]].setBackgroundColor(Color.YELLOW);
+							_views[_prevCell[1]][_prevCell[0]].setBackgroundColor(Color.WHITE);
 							_selCoords[_prevCell[1]][_prevCell[0]] = 0;
 							if (_bin.length() > 0)
 							_bin = _bin.substring(0, _bin.length() - 1);
@@ -217,7 +213,7 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 						_curCell[0] = x;
 						_curCell[1] = y;
 						if (_selCoords[x][y] == 1) {
-							_views[_prevCell[1]][_prevCell[0]].setBackgroundColor(Color.YELLOW);
+							_views[_prevCell[1]][_prevCell[0]].setBackgroundColor(Color.WHITE);
 							_selCoords[_prevCell[1]][_prevCell[0]] = 0;
 							if (_bin.length() > 0)
 								_bin = _bin.substring(0, _bin.length() - 1);
@@ -237,7 +233,7 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 					for (int i = 0; i < _side; i++) {
 						for (int n = 0; n < _side; n++) {
 							if (_selCoords[n][i] == 1) {
-									_views[i][n].setBackgroundColor(Color.YELLOW);
+									_views[i][n].setBackgroundColor(Color.WHITE);
 									_selCoords[n][i] = 0;
 							}
 						}
@@ -255,8 +251,7 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 	}
 	
 	private boolean checkAnswer(String bin) {
-		if (bin.length() > 15){
-			Toast.makeText(_context, "Input Value too large - must be < 15", Toast.LENGTH_SHORT).show();
+		if (bin.length() > 15) {
 			return false;
 		}
 		if (bin.length() <= 0)
