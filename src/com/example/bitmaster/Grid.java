@@ -23,6 +23,7 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 		
 		_difficulty = Integer.parseInt(_preferences.getString("diff", "1"));
 		
+		_numAnswer = 0;
 		_points = 0;
 		_mult = 1;
 		_context = context;
@@ -257,14 +258,12 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 		if (bin.length() <= 0)
 			return false;
 		int check = Integer.parseInt(bin, 2);
-		for (int i = 0; i < 5; i++) {
-			if (_answers[i] == check) {
-				_answers[i] = -1;
+	    if (_answers[_numAnswer] == check) {
 				scorePoints((BASEPOINTS * _bin.length()), _mult);
 				_mult++;
+				_numAnswer++;
 				return true;
 			}
-		}
 		_mult = 1;
 		return false;
 	}
@@ -295,6 +294,7 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 		
 	}
 
+	private int _numAnswer;
 	private int[] _answers;
 	private int[] _curCell;
 	private int[] _prevCell;

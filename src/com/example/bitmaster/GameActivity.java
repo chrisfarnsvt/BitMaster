@@ -57,7 +57,8 @@ public class GameActivity extends Activity{
 			else
 				dec = (dec * 2) +1;
 		}
-		current.setText(String.valueOf("Selected: " + dec));
+		if (String.valueOf(dec).length() < 8)
+			current.setText(String.valueOf("Selected: " + dec));
 		mult.setText(String.valueOf("Multiplier: x" + grid.getMult()));
 		if (result){
 			_count ++;
@@ -116,6 +117,7 @@ public class GameActivity extends Activity{
 				grid.placeNum(i);
 			}
 		
+		if (String.valueOf(dec).length() < 8)
 		current.setText(String.valueOf("Selected: " + dec));
 		_count = 0;
 	}
