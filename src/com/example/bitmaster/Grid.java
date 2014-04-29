@@ -233,10 +233,8 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 				{
 					for (int i = 0; i < _side; i++) {
 						for (int n = 0; n < _side; n++) {
-							if (_selCoords[n][i] == 1) {
 									_views[i][n].setBackgroundColor(Color.WHITE);
 									_selCoords[n][i] = 0;
-							}
 						}
 					}
 					((GameActivity) _context).update(checkAnswer(_bin));
@@ -244,7 +242,6 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 					_curCell[1] = -1;
 					_prevCell[0] = -1;
 					_prevCell [1] = -1;
-					Log.i("bin is", _bin);
 					return true;
 				}
 		}
