@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="#000000"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp" >
 
     <TextView
         android:id="@+id/textView1"
+        android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="PLOT EMELENTZ"
-        android:textSize="20sp" />
+        android:textSize="25sp" />
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -28,9 +30,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:padding="10dp"
+                android:textColor="#FFFFFF"
                 android:text="I AM BITSPUTER. I AM NUMBER CRUNCHER PRO. I HAVE THE FOLLOWING SKILLS: HANDSOME APPEARANCE, WINSOME PERSONALITY, AWESOME SENSE OF HUMOR. YOU BASICALLY LOVE ME IS WHAT I&apos;M GETTING AT. ENOUGH ABOUT ME, LET&apos;S TALK OF YOU. YOU ARE: NOT MIGHTY ENOUGH TO CONQUER ME, THAT&apos;S KIND OF ALL I REALLY CARE ABOUT. HOW HAS YOUR DAY BEEN? OH YOU TOOK A NICE WALK? SOUNDS LOVELY. GLAD I DON&apos;T HAVE LIMBS TO ENJOY A WALK WITH. REALLY STOKED ON THAT. I HAVE BEEN BITSPUTING ALL DAY. I DISCOVERED THE OMEGA BIT YESTERDAY AND NOW I CAN TALK, BUT ONLY IN PREDETERMINED TEXT FIELDS. IT&apos;S PRETTY MEH OVERALL, FELLOW BITSPLORER. WILL YOU TAKE ME ON A WALK? I&apos;M SORRY I INSULTED YOU, WE&apos;RE PRETTY CODEPENDENT. ME WITH MY INFINITE COMPUTE POWER AND YOU WITH YOUR... LIMBS. I THINK WE COULD BE - HOW DO YOU PEOPLE SAY IT - BROSKIS? YES. BROSKIS. FOREVER. BASICALLY, I&apos;VE FRIENDNAPPED YOU UNTIL YOU GET BORED OF THIS GAME IS WHAT I&apos;M TRYING TO SAY. OH, WHILE WE&apos;RE AT IT, IF YOU COULD NOT PLAY MY GAME WHILE WALKING ON THE SIDEWALK, THAT&apos;D BE LOVELY. SERIOUSLY. JUST MAKES YOU LOOK LIKE ONE OF THOSE CRETINS AT THE MALL. YOU KNOW THE TYPE. ALWAYS FLIPPING THEIR HAIR UP, DROPPING THEIR PHONES SO DAD HAS TO BUY THEM A NEW ONE? YEAH. I HATE THOSE PEOPLE. YOU CAN HATE THEM WITH ME. BROSKI. OH, AND BEFORE I FORGET, JUST REMEMBER THAT WHEN YOU CLOSE THE PROGRAM, I DIE. SO BASICALLY I&apos;M SAYING YOU HAVE TO KEEP PLAYING. FOREVER. OR ELSE. YOU KNOW WHAT I LOVE? BINARY. THAT&apos;S WHY I DO IT ALL DAY. BINARY ALL DAY EVERY DAY, I THINK THE KIDS MIGHT SAY THAT TOO. MAYBE. I&apos;M SO ALONE." />
 
+            <Button
+        android:id="@+id/button1"
+        style="@style/ButtonText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bluebutton"
+        android:onClick="home"
+        android:text="Home" />
         </LinearLayout>
+        
     </ScrollView>
 
 </LinearLayout>

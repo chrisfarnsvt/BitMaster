@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#000000"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:textColor="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Tutorial"
+        android:textSize="25sp" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:text="Bitmaster is a game of binary math. You wil be given a grid of 1's and 0's and asked to find decimal numbers in this grid. To do so you are going to have to convert that decimal number to binary." />
+
+                <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:padding="10dp"
+                 android:layout_gravity="center"
+                android:textSize="20sp" 
+                android:textColor="#FFFFFF"
+                android:text="Binary"/>
+                
+                <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:text="Each digit of a binary number represents a power of 2 (1, 2, 4, 8, 16, etc). To begin converting from decimal to binary find the largest power of 2 smaller than your decimal number. The power of 2 that you just found is the number of digits in your binary number. For example if our decimal number is 35 the largest power of 2 that is smaller than it is 32 (2^5). Thus our binary number consists of 5 digits, with the first digit being a 1. We then take the previous power of 2 (2^4 in our example) and see if it fits into our number. In our example 16 would not fit into our decimal number because 32 + 16 is greater than 35. We thus add a 0 to our binary number (currently 10). Keep moving through the powers of 2 until you reach 2^0. You should now have a complete binary number that matches your decimal number." />
+                
+                <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:padding="10dp"
+                android:layout_gravity="center"
+                android:textSize="20sp" 
+                android:textColor="#FFFFFF"
+                android:text="Examples"/>
+                
+                <TableLayout
+                    android:id="@+id/tableLayout"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:textSize="20sp" 
+                    android:textColor="#FFFFFF">
+                    <TableRow>
+                        <TextView android:text="Decimal\t\t"
+                            	  android:textSize="20sp" 
+               					  android:textColor="#FFFFFF"/>
+                        <TextView android:text="Binary"
+								  android:textSize="20sp" 
+               					  android:textColor="#FFFFFF"/>
+                    </TableRow>
+                    <TableRow>
+                        <TextView android:text="10"
+                            	  android:textSize="20sp" 
+               					  android:textColor="#FFFFFF"/>
+                        <TextView android:text="1010"
+                            	  android:textSize="20sp" 
+               					  android:textColor="#FFFFFF"/>
+                    </TableRow>
+                    <TableRow>
+                        <TextView android:text="23"
+                                  android:textSize="20sp" 
+               					  android:textColor="#FFFFFF"/>
+                        <TextView android:text="10111"
+                                  android:textSize="20sp" 
+               					  android:textColor="#FFFFFF"/>
+                    </TableRow>
+                    <TableRow>
+                        <TextView android:text="72"
+                                  android:textSize="20sp" 
+               					  android:textColor="#FFFFFF"/>
+                        <TextView android:text="1001000"
+                                  android:textSize="20sp" 
+               					  android:textColor="#FFFFFF"/>
+                    </TableRow>
+                </TableLayout>
+        <Button
+        android:id="@+id/button1"
+        style="@style/ButtonText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bluebutton"
+        android:onClick="home"
+        android:text="Home" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

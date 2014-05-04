@@ -27,6 +27,36 @@
         android:text="Start Game" />
 
     <Button
+        android:id="@+id/button3"
+         style="@style/ButtonText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bluebutton"
+        android:onClick="tutorial"
+        android:text="Tutorial" />
+
+    <Button
+        android:id="@+id/button4"
+         style="@style/ButtonText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bluebutton"
+        android:onClick="story"
+        android:text="Story" />
+    
+    <Button
+        android:id="@+id/button5"
+        style="@style/ButtonText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bluebutton"
+        android:onClick="about"
+        android:text="About Us" />
+
+    <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

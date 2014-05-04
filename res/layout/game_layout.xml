@@ -81,16 +81,5 @@
     android:background="@drawable/bluebutton"
     style="@style/ButtonText" />
 
-<Button
-    android:id="@+id/button2"
-    style="@style/ButtonText"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:background="@drawable/bluebutton"
-    android:onClick="story"
-    android:paddingLeft="5dp"
-    android:text="Story" />
-
 </LinearLayout>
 </LinearLayout>

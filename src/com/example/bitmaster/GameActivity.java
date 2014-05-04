@@ -48,7 +48,7 @@ public class GameActivity extends Activity{
 		_answers = a;
 	}
 	
-	public void update(Boolean result) {
+	public void changeCurrent() {
 		String bin = grid.getBin();
 		long dec = 0;
 		for(int i = 0; i<bin.length(); i++) {
@@ -59,6 +59,10 @@ public class GameActivity extends Activity{
 		}
 		if (String.valueOf(dec).length() < 8)
 			current.setText(String.valueOf("Selected: " + dec));
+	}
+	
+	public void update(Boolean result) {
+		changeCurrent();
 		mult.setText(String.valueOf("Multiplier: x" + grid.getMult()));
 		if (result){
 			_count ++;
@@ -75,10 +79,6 @@ public class GameActivity extends Activity{
 			}
 		}
 			
-	}
-	
-	public void story(View Button){
-		setContentView(R.layout.story);
 	}
 	
 	public void reset (View Button) {

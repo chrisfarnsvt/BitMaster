@@ -189,14 +189,18 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 							_views[_prevCell[1]][_prevCell[0]].setBackgroundColor(Color.WHITE);
 							_selCoords[_prevCell[1]][_prevCell[0]] = 0;
 							if (_bin.length() > 0)
-							_bin = _bin.substring(0, _bin.length() - 1);
+							_bin = _bin.substring(0, _bin.length() - 1);	
+							((GameActivity) _context).changeCurrent();
 							return true;
 							
 						}
+						else {
 						_selCoords[x][y] = 1;
 						_bin += _views[y][x].getText() + "";
 						_views[y][x].setBackgroundColor(Color.RED);
+						((GameActivity) _context).changeCurrent();
 						return true;
+						}
 					}
 					return false;
 				}	
@@ -224,6 +228,7 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 						_selCoords[x][y] = 1;
 						_bin += _views[y][x].getText() + "";
 						_views[y][x].setBackgroundColor(Color.RED);
+						((GameActivity) _context).changeCurrent();
 						return true;
 					}
 					return false;
@@ -237,6 +242,7 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 									_selCoords[n][i] = 0;
 						}
 					}
+					_bin ="";
 					((GameActivity) _context).update(checkAnswer(_bin));
 					_curCell[0] = -1;
 					_curCell[1] = -1;

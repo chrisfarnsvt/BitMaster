@@ -43,6 +43,22 @@ public class MainActivity extends Activity {
 		
 	}
 	
+	public void about(View Button) {
+		setContentView(R.layout.about);
+	}
+	
+	public void story(View Button){
+		setContentView(R.layout.story);
+	}
+	
+	public void tutorial(View Button) {
+		setContentView(R.layout.tutorial);
+	}
+	
+	public void home(View Button){
+		setContentView(R.layout.start_layout);
+	}
+	
 	public void startOptions(View Button) {
 		Intent settingsActivity = new Intent(getBaseContext(), PrefActivity.class);
 		startActivity(settingsActivity);
