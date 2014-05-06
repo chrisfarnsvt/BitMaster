@@ -242,12 +242,12 @@ public class Grid extends TableLayout implements View.OnTouchListener, OnSharedP
 									_selCoords[n][i] = 0;
 						}
 					}
-					_bin ="";
 					((GameActivity) _context).update(checkAnswer(_bin));
 					_curCell[0] = -1;
 					_curCell[1] = -1;
 					_prevCell[0] = -1;
 					_prevCell [1] = -1;
+					_bin ="";
 					return true;
 				}
 		}
