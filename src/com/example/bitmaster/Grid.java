@@ -1,3 +1,10 @@
+/**
+ * Generates grid and maintains information on grid for Bitmaster
+ * 
+ *@author Chris Farnsworth & Colin Bates
+ *@version 1.0
+ */
+
 package com.example.bitmaster;
 
 import android.content.Context;
